@@ -17,3 +17,9 @@ export class InvalidInputException extends DomainException {
     super(message);
   }
 }
+
+export class EmailAlreadyInUseException extends DomainException {
+  constructor(message = 'Email is already in use') {
+    super(message);
+  }
+}
