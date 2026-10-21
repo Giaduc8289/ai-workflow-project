@@ -6,7 +6,8 @@ module.exports = {
   testMatch: ['**/*.test.ts'],
   collectCoverageFrom: [
     'src/**/*.ts',
-    '!src/**/*.interface.ts'
+    '!src/**/*.interface.ts',
+    '!src/index.ts',
   ],
   coverageThreshold: {
     global: {

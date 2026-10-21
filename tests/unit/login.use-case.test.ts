@@ -22,6 +22,7 @@ describe('LoginUseCase Unit Tests', () => {
   beforeEach(() => {
     userRepositoryMock = {
       findByEmail: jest.fn(),
+      save: jest.fn(),
     };
 
     passwordHasherMock = {
