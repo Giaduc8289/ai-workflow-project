@@ -5,4 +5,5 @@ export interface TokenPayload {
 
 export interface ITokenService {
   generateToken(payload: TokenPayload, expiresInSeconds: number): string;
+  verifyRefreshToken(token: string): Promise<TokenPayload | null>;
 }

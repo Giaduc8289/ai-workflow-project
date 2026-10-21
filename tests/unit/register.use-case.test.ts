@@ -13,9 +13,10 @@ describe('RegisterUseCase Unit Tests', () => {
 
   beforeEach(() => {
     userRepositoryMock = {
+      findById: jest.fn(),
       findByEmail: jest.fn(),
       save: jest.fn(),
-    } as any;
+    };
 
     passwordHasherMock = {
       hash: jest.fn(),

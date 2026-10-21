@@ -21,6 +21,7 @@ describe('LoginUseCase Unit Tests', () => {
 
   beforeEach(() => {
     userRepositoryMock = {
+      findById: jest.fn(),
       findByEmail: jest.fn(),
       save: jest.fn(),
     };
@@ -32,6 +33,7 @@ describe('LoginUseCase Unit Tests', () => {
 
     tokenServiceMock = {
       generateToken: jest.fn(),
+      verifyRefreshToken: jest.fn(),
     };
 
     loginUseCase = new LoginUseCase(

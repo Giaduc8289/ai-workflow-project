@@ -18,6 +18,18 @@ export class InvalidInputException extends DomainException {
   }
 }
 
+export class InvalidTokenException extends DomainException {
+  constructor(message = 'Invalid or expired refresh token') {
+    super(message);
+  }
+}
+
+export class UserNotFoundException extends DomainException {
+  constructor(message = 'User not found') {
+    super(message);
+  }
+}
+
 export class EmailAlreadyInUseException extends DomainException {
   constructor(message = 'Email is already in use') {
     super(message);

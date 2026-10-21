@@ -11,6 +11,10 @@ import * as crypto from 'crypto';
 class InMemoryUserRepository implements IUserRepository {
   private users: Map<string, User> = new Map();
 
+  async findById(id: string): Promise<User | null> {
+    return this.users.get(id) || null;
+  }
+
   async findByEmail(email: string): Promise<User | null> {
     const user = Array.from(this.users.values()).find((u) => u.email === email.toLowerCase().trim());
     return user || null;
@@ -49,6 +53,26 @@ class SimpleTokenService implements ITokenService {
   generateToken(payload: TokenPayload, expiresInSeconds: number): string {
     const rawData = JSON.stringify({ ...payload, exp: Date.now() + expiresInSeconds * 1000 });
     return Buffer.from(rawData).toString('base64url');
+  }
+
+  async verifyRefreshToken(token: string): Promise<TokenPayload | null> {
+    try {
+      const decoded = JSON.parse(Buffer.from(token, 'base64url').toString('utf8')) as
+        | (TokenPayload & { exp?: number })
+        | null;
+      if (
+        !decoded ||
+        typeof decoded.userId !== 'string' ||
+        typeof decoded.role !== 'string' ||
+        typeof decoded.exp !== 'number' ||
+        decoded.exp <= Date.now()
+      ) {
+        return null;
+      }
+      return { userId: decoded.userId, role: decoded.role };
+    } catch {
+      return null;
+    }
   }
 }
 
