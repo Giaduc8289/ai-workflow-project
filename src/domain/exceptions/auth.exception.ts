@@ -19,7 +19,7 @@ export class InvalidInputException extends DomainException {
 }
 
 export class EmailAlreadyInUseException extends DomainException {
-  constructor(message: string = 'Email is already registered') {
+  constructor(message = 'Email is already in use') {
     super(message);
   }
 }

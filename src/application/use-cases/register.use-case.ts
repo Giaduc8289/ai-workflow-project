@@ -1,5 +1,8 @@
 import { User } from '../../domain/entities/user.entity';
-import { EmailAlreadyInUseException } from '../../domain/exceptions/auth.exception';
+import {
+  EmailAlreadyInUseException,
+  InvalidInputException,
+} from '../../domain/exceptions/auth.exception';
 import { IUserRepository } from '../../domain/repositories/user-repository.interface';
 import { IPasswordHasher } from '../ports/password-hasher.interface';
 import { IIdGenerator } from '../ports/id-generator.interface';
